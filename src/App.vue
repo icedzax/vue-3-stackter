@@ -10,7 +10,7 @@
 <script setup>
 import { useMeta } from 'vue-meta'
 
-const siteName = 'Vite App'
+const siteName = 'Vite App Vue'
 
 useMeta({
     title: '',
