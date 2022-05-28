@@ -14,6 +14,14 @@
             Save
         </v-button>
     </div>
+    <section>
+        <div>
+            <div v-for="h in heroes.slice(0, 10)" :key="h.id">
+                {{ h.name }}
+                <img :src="h.img" alt="" />
+            </div>
+        </div>
+    </section>
 </template>
 
 <script setup>
@@ -21,6 +29,7 @@ import { useMeta } from 'vue-meta'
 import { computed, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { useStore } from 'vuex'
+import { LiquipediaApi } from 'liquipedia-api'
 
 useMeta({
     title: 'Homepage',
@@ -41,5 +50,23 @@ function saveName() {
     store.dispatch('user/saveName', newName.value)
     newName.value = ''
     router.push(`/about/${name.value}`)
+}
+
+const liquipediaApi = new LiquipediaApi({
+    USER_AGENT: 'MyAwesomeProject/1.0 (my.email@gmail.com)',
+})
+
+const heroes = ref([])
+const storeHeroes = computed(() => store.getters['dota/getHeroes'])
+
+fetchHeroes()
+async function fetchHeroes() {
+    if (storeHeroes.value.length > 0) {
+        return
+    }
+    console.log('FEATCHING HEROES')
+    const fHeroes = await liquipediaApi.dota.getHeroes()
+    heroes.value = fHeroes
+    store.dispatch('dota/initHeroes', heroes.value)
 }
 </script>
