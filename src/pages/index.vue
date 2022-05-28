@@ -14,11 +14,26 @@
             Save
         </v-button>
     </div>
-    <section>
-        <div>
+    <!-- <section>
+        <div class="grid grid-cols-6 gap-0">
             <div v-for="h in heroes.slice(0, 10)" :key="h.id">
-                {{ h.name }}
-                <img :src="h.img" alt="" />
+                <img
+                    :src="`http://cdn.dota2.com/apps/dota2/images/heroes/${h.name.toLowerCase()}_sb.png`"
+                    alt=""
+                />
+            </div>
+        </div>
+    </section> -->
+    <section>
+        <div class="m-3 flex justify-center space-x-0.5 w-full">
+            <div v-for="h in storeHeroes.slice(0, 10)" :key="h.id">
+                <img
+                    class="rounded-sm"
+                    :src="`http://cdn.dota2.com/apps/dota2/images/heroes/${h.name
+                        .replace(' ', '_')
+                        .toLowerCase()}_sb.png`"
+                    alt=""
+                />
             </div>
         </div>
     </section>
