@@ -1,5 +1,5 @@
 <template>
-    <h1 class="text-2xl font-bold">Hero : {{ pHeroes.substring(14) }}</h1>
+    <h1 class="text-2xl font-bold">Hero : {{ viewHeroes }}</h1>
     <div></div>
     <div class="mt-8">
         <input
@@ -40,11 +40,15 @@ useMeta({
     title: 'Homepage',
 })
 
-const router = useRouter()
+// const router = useRouter()
 
 const store = useStore()
 
-const pHeroes = computed(() => store.getters['dota/getPickheroes'])
+const viewHeroes = computed(() =>
+    store.getters['dota/getPickheroes']
+        ? store.getters['dota/getPickheroes'].substring(14)
+        : ''
+)
 
 function selectHeroes(param) {
     store.dispatch('dota/setPickhero', param)

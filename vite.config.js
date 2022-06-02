@@ -14,6 +14,7 @@ export default defineConfig({
     },
     plugins: [vue(), Pages(), Layouts(), ViteComponents(), mkcert()],
     server: {
+        host: '0.0.0.0',
         https: false,
         proxy: {
             '/api': {
