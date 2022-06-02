@@ -1,33 +1,29 @@
 <template>
-    <h1 class="text-2xl font-bold">Welcome to Vue3Stackter, {{ name }}</h1>
-
+    <h1 class="text-2xl font-bold">Hero : {{ pHeroes.substring(14) }}</h1>
+    <div></div>
     <div class="mt-8">
         <input
-            v-model="newName"
             type="text"
             class="p-2 border border-gray-300 rounded focus:ring-2"
         />
-        <v-button
-            :class="{ 'pointer-events-none opacity-40': !newName }"
-            @click.native="saveName"
-        >
-            Save
-        </v-button>
     </div>
-    <!-- <section>
-        <div class="grid grid-cols-6 gap-0">
-            <div v-for="h in heroes.slice(0, 10)" :key="h.id">
-                <img
-                    :src="`http://cdn.dota2.com/apps/dota2/images/heroes/${h.name.toLowerCase()}_sb.png`"
-                    alt=""
-                />
-            </div>
-        </div>
-    </section> -->
     <section>
-        <div class="m-3 flex justify-center space-x-0.5 w-full">
+        <div
+            class="m-3 mx-auto grid grid-cols-3 sm:grid-cols-8 lg:grid-cols-12 space-x-0.5 space-y-0.5 w-fit"
+        >
             <div v-for="heroes in storeHeroes.slice(0, 20)" :key="heroes.id">
-                <span>{{ heroes.name }}</span>
+                <!-- <img
+                    :src="`https://cdn.dota2.com/apps/dota2/images/heroes/${heroes.name.substring(
+                        14
+                    )}_sb.png`"
+                    alt=""
+                /> -->
+                <span
+                    class="hover:cursor-pointer hover:text-blue-500"
+                    @click="selectHeroes(heroes.name)"
+                >
+                    {{ heroes.id }}
+                </span>
             </div>
         </div>
     </section>
@@ -48,17 +44,10 @@ const router = useRouter()
 
 const store = useStore()
 
-// name
-// const name = computed(() => store.state.user.name)
-const name = computed(() => store.getters['user/nameUppercased'])
-const newName = ref('')
-function saveName() {
-    if (newName.value === '') {
-        return
-    }
-    store.dispatch('user/saveName', newName.value)
-    newName.value = ''
-    router.push(`/about/${name.value}`)
+const pHeroes = computed(() => store.getters['dota/getPickheroes'])
+
+function selectHeroes(param) {
+    store.dispatch('dota/setPickhero', param)
 }
 
 const heroes = ref([])
@@ -69,16 +58,10 @@ async function fetchHeroes() {
     if (storeHeroes.value.length > 0) {
         return
     }
-    console.log('FEATCHING HEROES')
-    try {
-        const data = await axios.get(
-            'https://api.steampowered.com/IEconDOTA2_570/GetHeroes/v1?key=D92ADA35EC43FAF861D0200FEFCAA05B'
-        )
-        heroes.value = data.data
-    } catch (error) {
-        console.log(error)
-    }
-
+    const getHeroes = await axios.get(
+        '/api/IEconDOTA2_570/GetHeroes/v1?key=D92ADA35EC43FAF861D0200FEFCAA05B'
+    )
+    heroes.value = getHeroes.data.result.heroes
     store.dispatch('dota/initHeroes', heroes.value)
 }
 </script>
