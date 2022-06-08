@@ -1,5 +1,5 @@
 [[redirects]]
-  from = "https://dawn-of-cry.netlify.app/api/"
+  from = "https://dawn-of-cry.netlify.app/"
   to = "https://api.steampowered.com/"
   status = 200
   force = true
