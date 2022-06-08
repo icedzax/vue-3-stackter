@@ -62,9 +62,9 @@ async function fetchHeroes() {
     if (storeHeroes.value.length > 0) {
         return
     }
-    const getHeroes = await axios.get(
-        'api/IEconDOTA2_570/GetHeroes/v1?key=D92ADA35EC43FAF861D0200FEFCAA05B'
-    )
+    const url =
+        'IEconDOTA2_570/GetHeroes/v1?key=D92ADA35EC43FAF861D0200FEFCAA05B'
+    const getHeroes = await axios.get(`/api/${url}`)
     heroes.value = getHeroes.data.result.heroes
     store.dispatch('dota/initHeroes', heroes.value)
 }
