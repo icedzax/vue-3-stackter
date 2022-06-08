@@ -1,9 +1,11 @@
 [[redirects]]
-  from = "/api"
+  from = "/api/*"
   to = "https://api.steampowered.com/"
   status = 200
   force = true
-
+ [redirects.headers]
+    X-From = "Netlify"
+    X-Api-Key = "D92ADA35EC43FAF861D0200FEFCAA05B"
 [[headers]]
   # Define which paths this specific [[headers]] block will cover.
   for = "/*"
