@@ -1,7 +1,8 @@
 [[redirects]]
-  from = "/*"
-  to = "/index.html"
+  from = "/api"
+  to = "https://api.steampowered.com/"
   status = 200
+  force = true
 
 [[headers]]
   # Define which paths this specific [[headers]] block will cover.
