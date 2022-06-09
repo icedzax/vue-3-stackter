@@ -63,8 +63,12 @@ async function fetchHeroes() {
         return
     }
     const url =
-        'IEconDOTA2_570/GetHeroes/v1?key=D92ADA35EC43FAF861D0200FEFCAA05B'
-    const getHeroes = await axios.get(`/api/${url}`)
+        'api/IEconDOTA2_570/GetHeroes/v1?key=D92ADA35EC43FAF861D0200FEFCAA05B'
+    const prdurl = 'https://izeeeee.netlify.app/.netlify/functions/dota'
+
+    const getHeroes = await axios.get(
+        process.env.NODE_ENV === 'development' ? url : prdurl
+    )
     heroes.value = getHeroes.data.result.heroes
     store.dispatch('dota/initHeroes', heroes.value)
 }
