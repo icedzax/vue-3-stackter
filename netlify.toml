@@ -5,6 +5,6 @@
   force = true
 
 [build]
-  command = "yarn build && cd functions/node-fetch && yarn"
+  command = "npm run  build && cd functions/node-fetch && npm install"
   functions = "functions"
   publish = "dist"
