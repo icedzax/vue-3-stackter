@@ -64,7 +64,7 @@ async function fetchHeroes() {
     }
     const url =
         'api/IEconDOTA2_570/GetHeroes/v1?key=D92ADA35EC43FAF861D0200FEFCAA05B'
-    const prdurl = '/.netlify/functions/node-fetch'
+    const prdurl = '/.netlify/functions/dota'
 
     const getHeroes = await axios.get(
         process.env.NODE_ENV === 'development' ? url : prdurl
