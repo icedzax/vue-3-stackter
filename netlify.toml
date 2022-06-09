@@ -5,6 +5,6 @@
   force = true
 
 [build]
-  command = "npm run  build && cd functions/node-fetch && npm install"
+  command = "yarn build && cd functions/dota && yarn"
   functions = "functions"
   publish = "dist"
