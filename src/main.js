@@ -7,6 +7,7 @@ import App from './App.vue'
 import store from './store'
 import './index.css'
 import vue3GoogleLogin from 'vue3-google-login'
+import VueCookies from 'vue-cookies'
 
 const routes = setupLayouts(generatedRoutes)
 
@@ -23,6 +24,7 @@ const app = createApp(App)
         clientId:
             '613523520795-prtusecufq8d68qv8hjvk3a7hjsg78uv.apps.googleusercontent.com',
     })
+    .use(VueCookies, { expire: '7d' })
 
 router.isReady()
 app.mount('#app')

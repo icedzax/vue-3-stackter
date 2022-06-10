@@ -1,20 +1,22 @@
 <script setup>
 import { decodeCredential } from 'vue3-google-login'
 import { reactive, computed, ref, onMounted } from 'vue'
+import { googleLogout } from 'vue3-google-login'
+
 const callback = (response) => {
     const userData = decodeCredential(response.credential)
-
-    console.log('Handle the userData', userData)
+    $cookies.set('googleUser', response.credential)
 }
 const googleUser = reactive({
-    data: null,
+    data: decodeCredential($cookies.get('googleUser')),
 })
 
-onMounted(() => {
-    console.log(decodeCredential(credential))
+onMounted(async () => {
+    console.log('#mounted', $cookies.get('googleUser'))
+    console.log('cookiesDecode', decodeCredential($cookies.get('googleUser')))
 })
 </script>
 <template>
     <div>{{ userData }}</div>
-    <GoogleLogin :callback="callback" />
+    <GoogleLogin :callback="callback" auto-login />
 </template>

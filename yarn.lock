@@ -2891,6 +2891,11 @@
   optionalDependencies:
     "fsevents" "~2.3.2"
 
+"vue-cookies@^1.8.1":
+  "integrity" "sha512-PDq1EaiRRyau5PBQVscXboHW+iWtcG4wRY2UKIz1j0nrjb3KESRU1PUyNUDdOajAwy4RH1IfiNR0suhWRXQdrA=="
+  "resolved" "https://registry.npmjs.org/vue-cookies/-/vue-cookies-1.8.1.tgz"
+  "version" "1.8.1"
+
 "vue-eslint-parser@^8.0.1":
   "integrity" "sha512-dzHGG3+sYwSf6zFBa0Gi9ZDshD7+ad14DGOdTLjruRVgZXe2J+DcZ9iUhyR48z5g1PqRa20yt3Njna/veLJL/g=="
   "resolved" "https://registry.npmjs.org/vue-eslint-parser/-/vue-eslint-parser-8.3.0.tgz"
@@ -2903,6 +2908,11 @@
     "esquery" "^1.4.0"
     "lodash" "^4.17.21"
     "semver" "^7.3.5"
+
+"vue-google-oauth2@^1.5.8":
+  "integrity" "sha512-mATpPrLjzjAoUwgFC2feEZEhyoFyItPQSdEgX3m+rHI17sXLEdKzcMLmk+8B1obu4J/YVuVRR9A1afs+4VEk0Q=="
+  "resolved" "https://registry.npmjs.org/vue-google-oauth2/-/vue-google-oauth2-1.5.8.tgz"
+  "version" "1.5.8"
 
 "vue-meta@3.0.0-alpha.10":
   "integrity" "sha512-rYeIGkhm1gKBcReEkPHiV6LV2Y6BZTMGTkGw1mQIZTxfFcVJL0srLZsL1zAmLeTGxMrlDYylMQEVSYRkDnwz3A=="
