@@ -2916,7 +2916,7 @@
   dependencies:
     "@vue/devtools-api" "^6.0.0"
 
-"vue@^2.6.12 || ^3.2.4", "vue@^3.0.0", "vue@^3.0.2", "vue@^3.2.0", "vue@^3.2.25", "vue@^3.2.33", "vue@3.2.33":
+"vue@^2.6.12 || ^3.2.4", "vue@^3.0.0", "vue@^3.0.2", "vue@^3.0.3", "vue@^3.2.0", "vue@^3.2.25", "vue@^3.2.33", "vue@3.2.33":
   "integrity" "sha512-si1ExAlDUrLSIg/V7D/GgA4twJwfsfgG+t9w10z38HhL/HA07132pUQ2KuwAo8qbCyMJ9e6OqrmWrOCr+jW7ZQ=="
   "resolved" "https://registry.npmjs.org/vue/-/vue-3.2.33.tgz"
   "version" "3.2.33"
@@ -2926,6 +2926,11 @@
     "@vue/runtime-dom" "3.2.33"
     "@vue/server-renderer" "3.2.33"
     "@vue/shared" "3.2.33"
+
+"vue3-google-login@^2.0.9":
+  "integrity" "sha512-fLeSu+agGwLnsca2zZqe/BLewcCtXgZGqos+ccCmhA8wdz7vby5h9PvJUYRollMUgqYuu5iPAaqgJLSBJhF9IQ=="
+  "resolved" "https://registry.npmjs.org/vue3-google-login/-/vue3-google-login-2.0.9.tgz"
+  "version" "2.0.9"
 
 "vuex@^4.0.2":
   "integrity" "sha512-M6r8uxELjZIK8kTKDGgZTYX/ahzblnzC4isU1tpmEuOIIKmV+TRdc+H4s8ds2NuZ7wpUTdGRzJRtoj+lI+pc0Q=="

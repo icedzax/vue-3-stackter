@@ -3,7 +3,8 @@
     <div></div>
     <div class="mt-8">
         <input
-            type="text"
+            v-model="state.search"
+            type="search"
             class="p-2 border border-gray-300 rounded focus:ring-2"
         />
     </div>
@@ -11,7 +12,7 @@
         <div
             class="m-3 mx-auto grid grid-cols-3 sm:grid-cols-8 lg:grid-cols-12 space-x-0.5 space-y-0.5 w-fit"
         >
-            <div v-for="heroes in storeHeroes.slice(0, 20)" :key="heroes.id">
+            <div v-for="heroes in filtered" :key="heroes.id">
                 <!-- <img
                     :src="`https://cdn.dota2.com/apps/dota2/images/heroes/${heroes.name.substring(
                         14
@@ -22,16 +23,17 @@
                     class="hover:cursor-pointer hover:text-blue-500"
                     @click="selectHeroes(heroes.name)"
                 >
-                    {{ heroes.id }}
+                    {{ heroes.name.substring(14) }}
                 </span>
             </div>
         </div>
+        <GoogleLogin :callback="callback" />
     </section>
 </template>
 
 <script setup>
 import { useMeta } from 'vue-meta'
-import { computed, ref } from 'vue'
+import { computed, ref, reactive } from 'vue'
 import { useRouter } from 'vue-router'
 import { useStore } from 'vuex'
 import axios from 'axios'
@@ -40,9 +42,35 @@ useMeta({
     title: 'Homepage',
 })
 
+const callback = (response) => {
+    // This callback will be triggered when the user selects or login to
+    // his Google account from the popup
+    console.log('Handle the response', response)
+}
+
 // const router = useRouter()
 
 const store = useStore()
+
+const state = reactive({
+    search: null,
+    heroes: computed(() => store.getters['dota/getHeroes']),
+})
+
+const filtered = computed(() => {
+    if (state.search) {
+        //console.log('check2a')
+        return state.heroes.filter((item) => {
+            return state.search
+                .toLowerCase()
+                .split(' ')
+                .every((v) => item.name.toLowerCase().includes(v))
+        })
+    } else {
+        console.log('check2b')
+        return state.heroes
+    }
+})
 
 const viewHeroes = computed(() =>
     store.getters['dota/getPickheroes']
@@ -51,6 +79,7 @@ const viewHeroes = computed(() =>
 )
 
 function selectHeroes(param) {
+    this.state.search = param.substring(14)
     store.dispatch('dota/setPickhero', param)
 }
 
