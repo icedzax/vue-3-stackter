@@ -3,7 +3,7 @@ const fetch = require('node-fetch')
 const handler = async function () {
     try {
         const response = await fetch(
-            'https://api.steampowered.com/IEconDOTA2_570/GetItems/v1?key=D92ADA35EC43FAF861D0200FEFCAA05Bm',
+            'https://api.steampowered.com/IEconDOTA2_570/GetGameItems/v1?key=D92ADA35EC43FAF861D0200FEFCAA05B',
             {
                 headers: { Accept: 'application/json' },
             }
