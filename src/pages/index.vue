@@ -13,17 +13,19 @@
             class="m-3 mx-auto grid grid-cols-3 sm:grid-cols-8 lg:grid-cols-12 space-x-0.5 space-y-0.5 w-fit"
         >
             <div v-for="heroes in filtered" :key="heroes.id">
-                <!-- <img
+                <img
+                    @click="selectHeroes(heroes.name)"
+                    class="hover:cursor-pointer"
                     :src="`https://cdn.dota2.com/apps/dota2/images/heroes/${heroes.name.substring(
                         14
                     )}_sb.png`"
                     alt=""
-                /> -->
+                />
                 <span
                     class="hover:cursor-pointer hover:text-blue-500"
                     @click="selectHeroes(heroes.name)"
                 >
-                    {{ heroes.name.substring(14) }}
+                    <!-- {{ heroes.name.substring(14) }} -->
                 </span>
             </div>
         </div>
