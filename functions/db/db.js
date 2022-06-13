@@ -8,14 +8,21 @@ exports.handler = async function (event, context) {
         useUnifiedTopology: true,
         serverApi: ServerApiVersion.v1,
     })
-    const hero = event.queryStringParameters.hero
+    const evt = event.queryStringParameters
+
+    const build = Object.values(evt)[0]
+
+    const req = {
+        [Object.keys(evt)[1]]:
+            Object.keys(evt)[1] === 'id'
+                ? parseInt(Object.values(evt)[1])
+                : Object.values(evt)[1],
+    }
+
     const book = client.db('book')
 
     try {
-        const getBuild = await book
-            .collection('build')
-            .find({ hero: hero })
-            .toArray()
+        const getBuild = await book.collection(build).find(req).toArray()
         client.close()
         return {
             statusCode: 200,
